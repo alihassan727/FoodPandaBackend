@@ -17,7 +17,7 @@ app.use(cors());
 
 //Monogo Connect
 mongoose
-  .connect("mongodb://localhost:27017/FoodPanda")
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB Connected");
   })
