@@ -29,13 +29,20 @@ const updateFunc = async (req, res) => {
     }
 
     if (updateData.item_price) {
+      const price = Number(updateData.item_price);
+      if (isNaN(price)) {
+        return res.status(400).json({
+          success: false,
+          message: "Invalid price value",
+        });
+      }
       updateData.item_price = Number(updateData.item_price);
     }
 
     const updatedItem = await ItemData.findByIdAndUpdate(
-      productId,
+      { _id: productId, owner: req.userId },
       updateData,
-      { new: true },
+      { new: true, runValidators: true },
     );
 
     res.status(200).json({
@@ -45,7 +52,6 @@ const updateFunc = async (req, res) => {
     });
   } catch (error) {
     console.error("Item Update Error:", error);
-    res.status(500).json({ success: false, message: "Server error" });
   }
 };
 

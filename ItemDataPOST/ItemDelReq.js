@@ -17,7 +17,7 @@ const deleteFunc = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Item deleted successfully" });
   } catch (error) {
-    console.error("Item Update Error:", error);
+    console.error("Item Delete Error:", error);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
