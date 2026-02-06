@@ -1,8 +1,7 @@
 import express from "express";
 import mongoose, { Schema } from "mongoose";
-
 import jwt from "jsonwebtoken";
-import Login from "../../backend/LoginDB/loginIndex.js";
+import Login from '../LoginDB/loginIndex.js';
 
 const router = express.Router();
 
