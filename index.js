@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import signupRoutes from "./SignupDB/signupIndex.js";
 import loginRoutes from "./LoginDB/loginIndex.js";
-import userProfile from "../backend/ProfileData/UserProfile.js";
+import userProfile from "./ProfileData/UserProfile.js";
 import itemData from "../backend/ItemDataPOST/itemPostReq.js";
 import ItemGetReq from "../backend/ItemDataPOST/ItemGetReq.js";
 import ItemUpdateReq from "../backend/ItemDataPOST/ItemPUTreq.js";
