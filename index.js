@@ -5,10 +5,10 @@ import cors from "cors";
 import signupRoutes from "./SignupDB/signupIndex.js";
 import loginRoutes from "./LoginDB/loginIndex.js";
 import userProfile from "./ProfileData/UserProfile.js";
-import itemData from "../backend/ItemDataPOST/itemPostReq.js";
-import ItemGetReq from "../backend/ItemDataPOST/ItemGetReq.js";
-import ItemUpdateReq from "../backend/ItemDataPOST/ItemPUTreq.js";
-import ItemDeleteReq from "../backend/ItemDataPOST/ItemDelReq.js";
+import itemData from "./ItemDataPOST/itemPostReq.js";
+import ItemGetReq from "./ItemDataPOST/ItemGetReq.js";
+import ItemUpdateReq from "./ItemDataPOST/ItemPUTreq.js";
+import ItemDeleteReq from "./ItemDataPOST/ItemDelReq.js";
 
 //Server Make
 const app = express();
