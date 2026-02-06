@@ -2,6 +2,7 @@ import express from "express";
 import multer from "multer";
 import cloudinary from "../cloudinary.js";
 import streamifier from "streamifier";
+import mongoose from "mongoose";
 import authmiddleware from "../MiddleWare/middleware.js";
 import { ItemData } from "./itemPostReq.js";
 
@@ -11,6 +12,11 @@ const upload = multer();
 const updateFunc = async (req, res) => {
   try {
     const productId = req.params.id;
+    if (!mongoose.Types.ObjectId.isValid(productId)) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid item id" });
+    }
     let updateData = { ...req.body };
     if (req.file) {
       const result = await new Promise((resolve, reject) => {
@@ -32,11 +38,17 @@ const updateFunc = async (req, res) => {
       updateData.item_price = Number(updateData.item_price);
     }
 
-    const updatedItem = await ItemData.findByIdAndUpdate(
-      productId,
+    const updatedItem = await ItemData.findOneAndUpdate(
+      { _id: productId, owner: req.userId },
       updateData,
       { new: true },
     );
+
+    if (!updatedItem) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Item not found" });
+    }
 
     res.status(200).json({
       success: true,
